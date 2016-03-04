@@ -1,0 +1,47 @@
+azs:
+- name: z1
+  cloud_properties: {availability_zone: us-east-1a}
+- name: z2
+  cloud_properties: {availability_zone: us-east-1c}
+
+compilation:
+  workers: 3
+  network: public-bosh
+  reuse_compilation_vms: true
+  az: z1
+  cloud_properties:
+    instance_type: m3.medium
+    # availability_zones: [us-east-1a,us-east-1d]
+
+disk_pools:
+- name: OMG_SO_LARGE
+  disk_size: 1100_000
+  cloud_properties:
+    type: gp2
+
+networks:
+- name: public-bosh
+  type: manual
+  subnets:
+  - range: 10.0.0.0/24
+    gateway: 10.0.0.1
+    dns: [10.0.0.2]
+    reserved: [10.0.0.2-10.0.0.6]
+    static: [10.0.0.11-10.0.0.20]
+    az: z1
+    cloud_properties: {subnet: subnet-adbe09f4}
+- name: public
+  type: vip
+
+resource_pools:
+  - name: default
+    network: default
+    stemcell:
+      name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+      version: latest
+    cloud_properties:
+      instance_type: t2.micro
+      availability_zone: us-east-1a
+      ephemeral_disk:
+        size: 25000
+        type: gp2

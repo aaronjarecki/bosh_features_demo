@@ -3,6 +3,24 @@ name: server
 
 templates:
   ctl.sh : bin/ctl.sh
+  config.yml.erb : config.yml
+
+consumes:
+- name: consume-link
+  type: link-type
 
 packages:
 - server
+
+properties:
+  property_a:
+    default: consumes_a
+
+  name_spaced.property_b:
+    default: consumes_b
+
+  public_a:
+     default: consumes_a
+
+  name_spaced.public_b:
+     default: consumes_b

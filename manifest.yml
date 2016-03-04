@@ -1,0 +1,32 @@
+---
+name: bosh_demo
+
+director_uuid: 6c9670c9-af9d-455e-8e96-1fd6d7af5035
+
+releases:
+- {name: bosh_feature_demo, version: latest}
+
+update:
+  canaries: 0
+  max_in_flight: 100
+  canary_watch_time: 1000 - 30000
+  update_watch_time: 1000 - 30000
+
+jobs:
+- name: server
+  instances: 1
+  templates:
+  - name: server
+  resource_pool: default
+  networks:
+  - name: public-bosh
+  azs: [z1]
+
+- name: service
+  instances: 1
+  templates:
+  - name: service
+  resource_pool: default
+  networks:
+  - name: public-bosh
+  azs: [z1]

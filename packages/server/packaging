@@ -1,0 +1,6 @@
+# abort script on any command that exits with a non zero value
+set -e
+
+cp pid_utils.sh ${BOSH_INSTALL_TARGET}
+
+cp server_bin/simple_server ${BOSH_INSTALL_TARGET}

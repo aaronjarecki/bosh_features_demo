@@ -1,0 +1,8 @@
+---
+name: server
+
+dependencies:
+
+files:
+- server_bin/simple_server
+- pid_utils.sh

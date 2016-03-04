@@ -1,0 +1,8 @@
+---
+name: server
+
+templates:
+  ctl.sh : bin/ctl.sh
+
+packages:
+- server

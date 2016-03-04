@@ -1,0 +1,12 @@
+---
+name: service
+
+templates:
+  ctl.sh : bin/ctl.sh
+
+packages:
+- simple_server
+
+provides:
+- name: link-name
+  type: link-type

@@ -1,0 +1,15 @@
+releases:
+  - name: test
+    version: latest
+
+addons:
+  - name: my_addon
+    jobs:
+    - name: service
+      release: test
+    properties:
+      service:
+        drain:
+          delay_secs: 4
+        post_start:
+          delay_secs: 10

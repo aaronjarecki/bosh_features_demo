@@ -1,7 +1,7 @@
 ---
 name: bosh_demo
 
-director_uuid: 6c9670c9-af9d-455e-8e96-1fd6d7af5035
+director_uuid: b957be6f-42b8-4182-9fa7-556489e8cf88
 
 releases:
 - {name: bosh_feature_demo, version: latest}
@@ -12,21 +12,30 @@ update:
   canary_watch_time: 1000 - 30000
   update_watch_time: 1000 - 30000
 
-jobs:
-- name: server
+instance_groups:
+- name: client
   instances: 1
-  templates:
-  - name: server
-  resource_pool: default
+  jobs:
+  - name: client
+  azs: [z1]
+  vm_type: large
+  stemcell: default
   networks:
   - name: public-bosh
-  azs: [z1]
+    default: [dns, gateway]
 
 - name: service
   instances: 1
-  templates:
+  jobs:
   - name: service
-  resource_pool: default
+  azs: [z1]
+  vm_type: large
+  stemcell: default
   networks:
   - name: public-bosh
-  azs: [z1]
+    default: [dns, gateway]
+
+stemcells:
+- alias: default
+  name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+  version: latest

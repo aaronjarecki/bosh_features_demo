@@ -22,7 +22,7 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    exec chpst -u vcap:vcap /var/vcap/packages/service/simple_server 8081
+    exec chpst -u vcap:vcap /var/vcap/packages/server/simple_server 8081
 
     ;;
 

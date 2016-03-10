@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JOB_NAME=server
+JOB_NAME=client
 RUN_DIR=/var/vcap/sys/run/$JOB_NAME
 LOG_DIR=/var/vcap/sys/log/$JOB_NAME
 PIDFILE=$RUN_DIR/pid
@@ -13,7 +13,7 @@ exec 2>> $LOG_DIR/$JOB_NAME.stderr.log
 
 source /var/vcap/packages/server/pid_utils.sh
 
-cp /var/vcap/jobs/server/config.yml /tmp
+cp /var/vcap/jobs/client/config.yml /tmp
 
 case $1 in
 

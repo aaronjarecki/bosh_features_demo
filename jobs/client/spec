@@ -1,5 +1,5 @@
 ---
-name: server
+name: client
 
 templates:
   ctl.sh : bin/ctl.sh
